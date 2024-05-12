@@ -1,10 +1,10 @@
 var http = require('http');
 var products = require('./data/products.json');
+const { getProducts } = require('./Controllers/productController')
 
 const app = http.createServer(function(req, res) {
     if(req.url === "/api/products" && req.method === "GET") {
-        res.writeHead(200, {'Content-Type' : 'application/json'})
-        res.end(JSON.stringify(products));
+        getProducts(req, res);
     }
     else {
         res.writeHead(404, {'content-type' : 'application/json'});
@@ -12,4 +12,6 @@ const app = http.createServer(function(req, res) {
     }
 })
 
-app.listen(PORT, ()=>{console.log("Server Started Running on ${PORT}")})
+const PORT = process.env.PORT || 8080
+
+app.listen(PORT, ()=>{console.log(`Server Started Running on ${PORT}`)})
