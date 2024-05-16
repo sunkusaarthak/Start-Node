@@ -1,3 +1,4 @@
+const { create } = require('domain');
 const Products = require('../Models/productModel');
 
 // @desc Gets All Products
@@ -32,7 +33,18 @@ async function getProduct(req, res, id) {
     }
 }
 
+// @desc Create a Product
+// @route POST api/product/
+async function createProduct(req, res) {
+    try {
+
+    } catch(error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     getProducts,
-    getProduct
+    getProduct,
+    createProduct
 }
