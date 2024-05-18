@@ -1,5 +1,7 @@
 const { create } = require('domain');
 const Products = require('../Models/productModel');
+const { title } = require('process');
+const { describe } = require('node:test');
 
 // @desc Gets All Products
 // @route GET api/products
@@ -37,6 +39,15 @@ async function getProduct(req, res, id) {
 // @route POST api/product/
 async function createProduct(req, res) {
     try {
+        const product = {
+            title: 'Test Product',
+            description: 'Test Description',
+            price: 100 
+        }
+
+        const newProduct = Products.create(product);
+        res.writeHead(201, {'Content-Type' : 'application/json'});
+        return res.end(JSON.stringify(newProduct));
 
     } catch(error) {
         console.log(error);
